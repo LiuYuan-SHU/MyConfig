@@ -15,6 +15,7 @@
 " ~/.local/share/nvim/plugged
 call plug#begin()
 
+Plug 'jiangmiao/auto-pairs'							" Swallow brackets
 Plug 'http://github.com/tpope/vim-surround'				" Surrounding ysw)
 Plug 'https://github.com/preservim/nerdtree'			" NerdTree
 Plug 'https://github.com/tpope/vim-commentary'			" For Commenting gcc & gc
@@ -44,12 +45,14 @@ Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 "
 " install ccls for coc
 " https://ianding.io/2019/07/29/configure-coc-nvim-for-c-c++-development/
-Plug 'https://github.com/neoclide/coc.nvim', {'do': { -> coc#util#install()}}				" Auto Completion
+Plug 'https://github.com/neoclide/coc.nvim'				" Auto Completion
 Plug 'https://github.com/ryanoasis/vim-devicons'		" Developer Icons
 Plug 'https://github.com/tc50cal/vim-terminal'			" Vim Terminal
 " tagbar needs: sudo apt install exubrant-ctags
 Plug 'https://github.com/preservim/tagbar'				" Tagbar for code navigation
 Plug 'https://github.com/terryma/vim-multiple-cursors'	" CTRL + N for multiple cursors
+" nvim LSP
+Plug 'https://github.com/neovim/nvim-lspconfig'			" lsp of neovim
 
 set encoding=UTF-8
 
@@ -57,14 +60,14 @@ call plug#end()
 
 " NERDTree config
 nnoremap <C-f> :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
+" nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 
 " Tagbar config
-nmap <F8> :TagbarToggle<CR>
+nmap <C-n> :TagbarToggle<CR>
 
 :set completeopt-=preview " For No Previews
 
