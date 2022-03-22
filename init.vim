@@ -33,7 +33,7 @@ nmap <leader>q :q<CR>
 " ~/.local/share/nvim/plugged
 call plug#begin()
 
-Plug 'jiangmiao/auto-pairs'							" Swallow brackets
+Plug 'jiangmiao/auto-pairs'								" Swallow brackets
 Plug 'http://github.com/tpope/vim-surround'				" Surrounding ysw)
 Plug 'https://github.com/preservim/nerdtree'			" NerdTree
 Plug 'https://github.com/tpope/vim-commentary'			" For Commenting gcc & gc
@@ -71,6 +71,9 @@ Plug 'https://github.com/preservim/tagbar'				" Tagbar for code navigation
 Plug 'https://github.com/terryma/vim-multiple-cursors'	" CTRL + N for multiple cursors
 " nvim LSP
 Plug 'https://github.com/neovim/nvim-lspconfig'			" lsp of neovim
+Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'	" Markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd ~/AppData/Local/nvim-data/plugged/markdown-preview.nvim & yarn install' }
+
 
 set encoding=UTF-8
 
@@ -78,11 +81,19 @@ call plug#end()
 
 " NERDTree config
 nnoremap <C-f> :NERDTreeFocus<CR>
-" nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
+" Open nerdtree if no file is chosen in command line
+function! StartUp()
+    if 0 == argc()
+        NERDTree
+    end
+endfunction
+
+autocmd VimEnter * call StartUp()
 
 " Tagbar config
 nnoremap <F8> :TagbarToggle<CR>
@@ -116,6 +127,9 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
+
+" MarkdownPreviewToggle
+nnoremap <F9> :MarkdownPreviewToggle<CR>
 
 " =======================================
 " /			plit window notes			/
