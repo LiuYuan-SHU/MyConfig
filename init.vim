@@ -1,5 +1,23 @@
 " Config file from https://www.youtube.com/watch?v=JWReY93Vl6g
 
+" hotkey config
+nmap J 6j
+nmap K 6k
+nmap H ^
+nmap L $
+imap jk <Esc>
+imap <C-s> <Esc>:w<CR>i
+nmap <C-s> :w<CR>
+imap <C-z> <Esc>ui
+nmap <C-z> u
+imap <C-y> <Esc><C-r>
+nmap <C-y> <C-r>
+
+let mapleader = ","
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
+
+"  vim config
 :set number
 " :set relativenumber
 :set autoindent
@@ -67,7 +85,7 @@ let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 
 " Tagbar config
-nmap <C-n> :TagbarToggle<CR>
+nnoremap <F8> :TagbarToggle<CR>
 
 :set completeopt-=preview " For No Previews
 
@@ -99,5 +117,15 @@ let g:airline_symbols.linenr = ''
 
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 
-" coc config
-
+" =======================================
+" /			plit window notes			/
+" / 1. Splitting Vim Screen Vertically	/
+" /		<C-w>v							/
+" / 2. Splitting Vim Screen Horizontally/
+" /		<C-w>s							/
+" / 3. Switch Pane						/
+" /		<C-w> h/j/k/l					/
+" / 4. Increase Width/Height of pane	/
+" /		Width	<C-w><Shift>'>'/'<'		/
+" /		Height	<C-w><Shift>'+'/'-'		/
+" =======================================
