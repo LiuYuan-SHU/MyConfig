@@ -6,7 +6,7 @@ nmap K 6k
 nmap H ^
 nmap L $
 imap jk <Esc>
-imap <C-s> <Esc>:w<CR>i
+imap <C-s> <Esc>:w<CR>
 nmap <C-s> :w<CR>
 imap <C-z> <Esc>ui
 nmap <C-z> u
@@ -71,8 +71,8 @@ Plug 'https://github.com/preservim/tagbar'				" Tagbar for code navigation
 Plug 'https://github.com/terryma/vim-multiple-cursors'	" CTRL + N for multiple cursors
 " nvim LSP
 Plug 'https://github.com/neovim/nvim-lspconfig'			" lsp of neovim
-Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'	" Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd ~/AppData/Local/nvim-data/plugged/markdown-preview.nvim & yarn install' }
+Plug 'https://github.com/godlygeek/tabular' | Plug 'https://github.com/plasticboy/vim-markdown'	" Markdown support
+Plug 'https://github.com/iamcco/markdown-preview.nvim', { 'do': 'cd ~/AppData/Local/nvim-data/plugged/markdown-preview.nvim & yarn install' } " Markdown Preview
 
 
 set encoding=UTF-8
@@ -133,6 +133,7 @@ nnoremap <F9> :MarkdownPreviewToggle<CR>
 
 " =======================================
 " /			plit window notes			/
+" =======================================
 " / 1. Splitting Vim Screen Vertically	/
 " /		<C-w>v							/
 " / 2. Splitting Vim Screen Horizontally/
@@ -143,3 +144,17 @@ nnoremap <F9> :MarkdownPreviewToggle<CR>
 " /		Width	<C-w><Shift>'>'/'<'		/
 " /		Height	<C-w><Shift>'+'/'-'		/
 " =======================================
+"
+" =======================================
+"			vim-Markdown keymaps
+" =======================================
+" The following commands are useful to open and close folds:
+" 
+" zr: reduces fold level throughout the buffer
+" zR: opens all folds
+" zm: increases fold level throughout the buffer
+" zM: folds everything all the way
+" za: open a fold your cursor is on
+" zA: open a fold your cursor is on recursively
+" zc: close a fold your cursor is on
+" zC: close a fold your cursor is on recursively
