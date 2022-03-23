@@ -73,7 +73,7 @@ Plug 'https://github.com/terryma/vim-multiple-cursors'	" CTRL + N for multiple c
 Plug 'https://github.com/neovim/nvim-lspconfig'			" lsp of neovim
 Plug 'https://github.com/godlygeek/tabular' | Plug 'https://github.com/plasticboy/vim-markdown'	" Markdown support
 Plug 'https://github.com/iamcco/markdown-preview.nvim', { 'do': 'cd ~/AppData/Local/nvim-data/plugged/markdown-preview.nvim & yarn install' } " Markdown Preview
-
+Plug 'https://github.com/Shirk/vim-gas'					" support for assembly
 
 set encoding=UTF-8
 
@@ -130,6 +130,9 @@ inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 
 " MarkdownPreviewToggle
 nnoremap <F9> :MarkdownPreviewToggle<CR>
+
+" vim-gas config
+let g:gasDisablePreproc = 1		" Globally diasable preprocessor macro detection
 
 " =======================================
 " /			plit window notes			/
