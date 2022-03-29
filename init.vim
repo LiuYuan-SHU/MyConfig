@@ -74,6 +74,7 @@ Plug 'https://github.com/neovim/nvim-lspconfig'			" lsp of neovim
 Plug 'https://github.com/godlygeek/tabular' | Plug 'https://github.com/plasticboy/vim-markdown'	" Markdown support
 Plug 'https://github.com/iamcco/markdown-preview.nvim', { 'do': 'cd ~/AppData/Local/nvim-data/plugged/markdown-preview.nvim & yarn install' } " Markdown Preview
 Plug 'https://github.com/Shirk/vim-gas'					" support for assembly
+Plug 'https://github.com/xiyaowong/nvim-transparent'	" background plugin
 
 set encoding=UTF-8
 
@@ -133,6 +134,10 @@ nnoremap <F9> :MarkdownPreviewToggle<CR>
 
 " vim-gas config
 let g:gasDisablePreproc = 1		" Globally diasable preprocessor macro detection
+
+" nvim-transparent config
+let g:transparent_enabled = v:true		" enable defaultly
+nnoremap <F10> :TransparentToggle<CR>
 
 " =======================================
 " /			plit window notes			/
