@@ -1,3 +1,16 @@
+" ===============================================================
+" /							Notes								/
+" ===============================================================
+" /	1.	/ Path of config file:									/
+" /		/	1.1	Windows:										/
+" /		/	1.2	Ubuntu: ~/.config/nvim							/
+" /	2.	/ Steps to install plugins:								/
+" /		/	2.1	Install curl									/
+" /		/	2.2 Install vim-plug: github.com/junegunn/vim-plug	/ 
+" /		/	2.3 :PlugInstall									/
+" /		/	2.4 Config plugins									/
+" ===============================================================
+
 " Config file from https://www.youtube.com/watch?v=JWReY93Vl6g
 
 " hotkey config
@@ -51,19 +64,26 @@ Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 " sudo npm install -g yarn
 " yarn install
 " yarn build
-" 
+" ========================================
 " if the version of node is too low
+" ========================================
 " 1. install nvm and check node version
 " touch ~/.bash_profile
 " curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
 " source ~/.nvm/nvm.sh
 " nvm --version
 " 2. update node to specific version
-" nvm install <version>  # Example: nvm install 12.14.1
-"
+" nvm install <version>  # Example: nvm install 16.0.0
+" ========================================
+" 
+" After finished installation, download coc for C:
+" 1. :CocInstall coc-clangd
+" 2. :CocCommand clangd.install
+" 
 " install ccls for coc
 " https://ianding.io/2019/07/29/configure-coc-nvim-for-c-c++-development/
-Plug 'https://github.com/neoclide/coc.nvim'				" Auto Completion
+" Plug 'https://github.com/neoclide/coc.nvim'				" Auto Completion
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}	" Auto Completion
 Plug 'https://github.com/ryanoasis/vim-devicons'		" Developer Icons
 Plug 'https://github.com/tc50cal/vim-terminal'			" Vim Terminal
 " tagbar needs: sudo apt install exubrant-ctags
@@ -74,7 +94,8 @@ Plug 'https://github.com/neovim/nvim-lspconfig'			" lsp of neovim
 Plug 'https://github.com/godlygeek/tabular' | Plug 'https://github.com/plasticboy/vim-markdown'	" Markdown support
 Plug 'https://github.com/iamcco/markdown-preview.nvim', { 'do': 'cd ~/AppData/Local/nvim-data/plugged/markdown-preview.nvim & yarn install' } " Markdown Preview
 Plug 'https://github.com/Shirk/vim-gas'					" support for assembly
-Plug 'https://github.com/xiyaowong/nvim-transparent'	" background plugin
+" Windows Terminal Preview Background Preview
+" Plug 'https://github.com/xiyaowong/nvim-transparent'	" background plugin
 
 set encoding=UTF-8
 
