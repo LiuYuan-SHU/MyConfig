@@ -86,7 +86,7 @@ Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}	" Auto Completion
 Plug 'https://github.com/ryanoasis/vim-devicons'		" Developer Icons
 Plug 'https://github.com/tc50cal/vim-terminal'			" Vim Terminal
-" tagbar needs: sudo apt install exubrant-ctags
+" tagbar needs: sudo apt install exuberant-ctags
 Plug 'https://github.com/preservim/tagbar'				" Tagbar for code navigation
 Plug 'https://github.com/terryma/vim-multiple-cursors'	" CTRL + N for multiple cursors
 " nvim LSP
