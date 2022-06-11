@@ -2,7 +2,7 @@
 " /							Notes								/
 " ===============================================================
 " /	1.	/ Path of config file:									/
-" /		/	1.1	Windows:										/
+" /		/	1.1	Windows: C:\Users\<User Name>\AppData\Local\nvim/
 " /		/	1.2	Ubuntu: ~/.config/nvim							/
 " /	2.	/ Steps to install plugins:								/
 " /		/	2.1	Install curl									/
@@ -60,9 +60,10 @@ Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 " 
 " if plugged is not under the same directory as init.vim
 " switch to ~/.local/share/nvim/plugged/coc.nvim
+" C:\User\<User Name>\AppData\Local\nvim-data\plugged\coc.nvim for Windows
 " 
 " sudo npm install -g yarn
-" yarn install
+" yarn install				" If you are in windows, you might to run set-executionpolicy remotesigned as admin
 " yarn build
 " ========================================
 " if the version of node is too low
@@ -78,7 +79,7 @@ Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 " 
 " After finished installation, download coc for C:
 " 1. :CocInstall coc-clangd
-" 2. :CocCommand clangd.install
+" 2. :CocCommand clangd.install in a cpp file
 " 
 " install ccls for coc
 " https://ianding.io/2019/07/29/configure-coc-nvim-for-c-c++-development/
@@ -95,7 +96,7 @@ Plug 'https://github.com/godlygeek/tabular' | Plug 'https://github.com/plasticbo
 Plug 'https://github.com/iamcco/markdown-preview.nvim', { 'do': 'cd ~/AppData/Local/nvim-data/plugged/markdown-preview.nvim & yarn install' } " Markdown Preview
 Plug 'https://github.com/Shirk/vim-gas'					" support for assembly
 " Windows Terminal Preview Background Preview
-" Plug 'https://github.com/xiyaowong/nvim-transparent'	" background plugin
+Plug 'https://github.com/xiyaowong/nvim-transparent'	" background plugin
 
 set encoding=UTF-8
 
