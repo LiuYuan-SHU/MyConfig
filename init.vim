@@ -43,7 +43,8 @@ nmap <leader>q :q<CR>
 " vim-plug in https://github.com/junegunn/vim-plug
 " needing curl
 " All plugins are under 
-" ~/.local/share/nvim/plugged
+" ~/.local/share/nvim/plugged on Linux
+" C:\User\<User Name>\AppData\Local\nvim-data\plugged for Windows
 call plug#begin()
 
 Plug 'jiangmiao/auto-pairs'								" Swallow brackets
