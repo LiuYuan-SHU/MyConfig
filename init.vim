@@ -43,7 +43,8 @@ nmap <leader>q :q<CR>
 " vim-plug in https://github.com/junegunn/vim-plug
 " needing curl
 " All plugins are under 
-" ~/.local/share/nvim/plugged
+" ~/.local/share/nvim/plugged on Linux
+" C:\User\<User Name>\AppData\Local\nvim-data\plugged for Windows
 call plug#begin()
 
 Plug 'jiangmiao/auto-pairs'								" Swallow brackets
@@ -87,7 +88,7 @@ Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}	" Auto Completion
 Plug 'https://github.com/ryanoasis/vim-devicons'		" Developer Icons
 Plug 'https://github.com/tc50cal/vim-terminal'			" Vim Terminal
-" tagbar needs: sudo apt install exuberant-ctags
+" tagbar needs: sudo apt install exuberant-ctags on Linux or download it from http://ctags.sourceforge.net/ on Windows
 Plug 'https://github.com/preservim/tagbar'				" Tagbar for code navigation
 Plug 'https://github.com/terryma/vim-multiple-cursors'	" CTRL + N for multiple cursors
 " nvim LSP
