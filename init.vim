@@ -96,12 +96,28 @@ Plug 'https://github.com/neovim/nvim-lspconfig'			" lsp of neovim
 Plug 'https://github.com/godlygeek/tabular' | Plug 'https://github.com/plasticboy/vim-markdown'	" Markdown support
 Plug 'https://github.com/iamcco/markdown-preview.nvim', { 'do': 'cd ~/AppData/Local/nvim-data/plugged/markdown-preview.nvim & yarn install' } " Markdown Preview
 Plug 'https://github.com/Shirk/vim-gas'					" support for assembly
-" Windows Terminal Preview Background Preview
+" Background Preview
 Plug 'https://github.com/xiyaowong/nvim-transparent'	" background plugin
+"
+" Fuzzy Finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim' " so we can type :Files to search the tontents of files
 
-set encoding=UTF-8
+" Better syntax highlighter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" better fuzzy finder
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+" or                                , { 'branch': '0.1.x' }
+
+" tabline plugin
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'romgrk/barbar.nvim'
 
 call plug#end()
+
+set encoding=UTF-8
 
 " NERDTree config
 nnoremap <C-f> :NERDTreeFocus<CR>
@@ -162,6 +178,76 @@ let g:gasDisablePreproc = 1		" Globally diasable preprocessor macro detection
 let g:transparent_enabled = v:true		" enable defaultly
 nnoremap <F10> :TransparentToggle<CR>
 
+" bar bar configure
+" NOTE: If barbar's option dict isn't created yet, create it
+let bufferline = get(g:, 'bufferline', {})
+
+" Enable/disable animations
+let bufferline.animation = v:true
+
+" Enable/disable auto-hiding the tab bar when there is a single buffer
+let bufferline.auto_hide = v:false
+
+" Enable/disable current/total tabpages indicator (top right corner)
+let bufferline.tabpages = v:true
+
+" Enable/disable close button
+let bufferline.closable = v:true
+
+" Enables/disable clickable tabs
+"  - left-click: go to buffer
+"  - middle-click: delete buffer
+let bufferline.clickable = v:true
+
+" Excludes buffers from the tabline
+let bufferline.exclude_ft = ['javascript']
+let bufferline.exclude_name = ['package.json']
+
+" Enable/disable icons
+" if set to 'buffer_number', will show buffer number in the tabline
+" if set to 'numbers', will show buffer index in the tabline
+" if set to 'both', will show buffer index and icons in the tabline
+" if set to 'buffer_number_with_icon', will show buffer number and icons in the tabline
+let bufferline.icons = v:true
+
+" Sets the icon's highlight group.
+" If false, will use nvim-web-devicons colors
+let bufferline.icon_custom_colors = v:false
+
+" Configure icons on the bufferline.
+let bufferline.icon_separator_active = '▎'
+let bufferline.icon_separator_inactive = '▎'
+let bufferline.icon_close_tab = ''
+let bufferline.icon_close_tab_modified = '●'
+let bufferline.icon_pinned = '車'
+
+" If true, new buffers will be inserted at the start/end of the list.
+" Default is to insert after current buffer.
+let bufferline.insert_at_start = v:false
+let bufferline.insert_at_end = v:false
+
+" Sets the maximum padding width with which to surround each tab.
+let bufferline.maximum_padding = 4
+
+" Sets the maximum buffer name length.
+let bufferline.maximum_length = 30
+
+" If set, the letters for each buffer in buffer-pick mode will be
+" assigned based on their name. Otherwise or in case all letters are
+" already assigned, the behavior is to assign letters in order of
+" usability (see order below)
+let bufferline.semantic_letters = v:true
+
+" New buffer letters are assigned in this order. This order is
+" optimal for the qwerty keyboard layout but might need adjustement
+" for other layouts.
+let bufferline.letters =
+  \ 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP'
+
+" Sets the name of unnamed buffers. By default format is "[Buffer X]"
+" where X is the buffer number. But only a static string is accepted here.
+let bufferline.no_name_title = v:null
+
 " =======================================
 " /			plit window notes			/
 " =======================================
@@ -189,3 +275,51 @@ nnoremap <F10> :TransparentToggle<CR>
 " zA: open a fold your cursor is on recursively
 " zc: close a fold your cursor is on
 " zC: close a fold your cursor is on recursively
+"
+
+" =======================================
+" /              bar bar                /
+" =======================================
+" Move to previous/next
+nnoremap <silent>    tf <Cmd>BufferPrevious<CR>
+nnoremap <silent>    tn <Cmd>BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent>    t< <Cmd>BufferMovePrevious<CR>
+nnoremap <silent>    t> <Cmd>BufferMoveNext<CR>
+" Goto buffer in position...
+nnoremap <silent>    t1 <Cmd>BufferGoto 1<CR>
+nnoremap <silent>    t2 <Cmd>BufferGoto 2<CR>
+nnoremap <silent>    t3 <Cmd>BufferGoto 3<CR>
+nnoremap <silent>    t4 <Cmd>BufferGoto 4<CR>
+nnoremap <silent>    t5 <Cmd>BufferGoto 5<CR>
+nnoremap <silent>    t6 <Cmd>BufferGoto 6<CR>
+nnoremap <silent>    t7 <Cmd>BufferGoto 7<CR>
+nnoremap <silent>    t8 <Cmd>BufferGoto 8<CR>
+nnoremap <silent>    t9 <Cmd>BufferGoto 9<CR>
+nnoremap <silent>    t10 <Cmd>BufferLast<CR>
+" Pin/unpin buffer
+nnoremap <silent>    tp <Cmd>BufferPin<CR>
+" Close buffer
+nnoremap <silent>    tq <Cmd>BufferClose<CR>
+" Wipeout buffer
+"                          :BufferWipeout
+" Close commands
+"                          :BufferCloseAllButCurrent
+"                          :BufferCloseAllButPinned
+"                          :BufferCloseAllButCurrentOrPinned
+"                          :BufferCloseBuffersLeft
+"                          :BufferCloseBuffersRight
+" Magic buffer-picking mode
+nnoremap <silent> <C-p>    <Cmd>BufferPick<CR>
+" Sort automatically by...
+nnoremap <silent> tbn <Cmd>BufferOrderByBufferNumber<CR>
+nnoremap <silent> tbd <Cmd>BufferOrderByDirectory<CR>
+nnoremap <silent> tbl <Cmd>BufferOrderByLanguage<CR>
+nnoremap <silent> twn <Cmd>BufferOrderByWindowNumber<CR>
+
+" Other:
+" :BarbarEnable - enables barbar (enabled by default)
+" :BarbarDisable - very bad command, should never be used
+
+" Telescope
+nnoremap fzf <Cmd>Telescope<CR>
