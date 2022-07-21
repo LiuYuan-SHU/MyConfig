@@ -24,7 +24,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -48,7 +48,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -72,6 +72,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# 添加语法高亮插件配置
+source ~/Liuyuan/GithubRepositories/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ENABLE_CORRECTION="true"
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -82,6 +86,7 @@ plugins=(
   zsh-autosuggestions
   )
 
+# 添加oh-my-zsh配置
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -127,6 +132,15 @@ export PATH=/Applications/Typora.app/Contents/MacOS:$PATH
 
 # add WPS
 export PATH=/Applications/wpsoffice.app/Contents/MacOS:$PATH
+
+# add Python
+export PATH=/Users/liuyuan/Library/Python/3.8/bin:$PATH
+
+# add Java
+export PATH=/Users/liuyuan/Library/Java/JavaVirtualMachines/openjdk-18.0.1.1/Contents/Home/bin:$PATH
+
+# add MySQL
+export PATH=/usr/local/mysql/bin:$PATH
 
 # My Personal settings
 clear
