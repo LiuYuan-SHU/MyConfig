@@ -79,7 +79,10 @@ Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 " ========================================
 " 
 " After finished installation, download coc for C:
-" 1. :CocInstall coc-clangd
+" 1. Install coc packages for different languages:
+"	1. :CocInstall coc-clangd
+"	2. :CocInstall coc-julia
+"	3. :CocInstall coc-python
 " 2. :CocCommand clangd.install in a cpp file
 " 
 " install ccls for coc
@@ -114,6 +117,9 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 " tabline plugin
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
+
+" Mac Dash for nvim
+Plug 'mrjones2014/dash.nvim', { 'do': 'make install' }
 
 call plug#end()
 
@@ -281,7 +287,7 @@ let bufferline.no_name_title = v:null
 " /              bar bar                /
 " =======================================
 " Move to previous/next
-nnoremap <silent>    tf <Cmd>BufferPrevious<CR>
+nnoremap <silent>    tp <Cmd>BufferPrevious<CR>
 nnoremap <silent>    tn <Cmd>BufferNext<CR>
 " Re-order to previous/next
 nnoremap <silent>    t< <Cmd>BufferMovePrevious<CR>
