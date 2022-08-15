@@ -1,5 +1,5 @@
 " ===============================================================
-" /							Notes								/
+" /							Notes								
 " ===============================================================
 " /	1.	/ Path of config file:									/
 " /		/	1.1	Windows: C:\Users\<User Name>\AppData\Local\nvim/
@@ -18,17 +18,24 @@ nmap J 6j
 nmap K 6k
 nmap H ^
 nmap L $
-imap jk <Esc>
-imap <C-s> <Esc>:w<CR>a
+imap <C-s> <Esc>:w<CR>
 nmap <C-s> :w<CR>
-imap <C-z> <Esc>ua
+imap <C-z> <Esc>u
 nmap <C-z> u
-imap <C-y> <Esc><C-r>a
+imap <C-y> <Esc><C-r>
 nmap <C-y> <C-r>
 
 let mapleader = ","
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
+imap <C-`> ``<Esc>ha
+" code block insert
+map <C-`> i<C-`>
+
+" adapt to Chinese
+nmap ： :
+imap · ``<Esc>ha
+nmap ， <leader>
 
 "  vim config
 :set number
@@ -39,7 +46,23 @@ nmap <leader>q :q<CR>
 :set smarttab
 :set softtabstop=4
 :set mouse=a
-
+" spell languages
+" cjk is used for Asian characters
+set spelllang=en,cjk
+" Show nine spell checking candidates at most
+set spellsuggest=best,9
+" Activate Spelling checker at the beginging
+" set spell!
+" inoremap spell <C-g>u<Esc>[s1z=`]a<C-g>u
+" ========================================
+" Notes for correcting spell errors
+" ========================================
+" 1. correct an error: <C-x>
+" 2. go to previous spell error: [s
+" 3. go to next spell error: ]s
+" 4. show candidates and choose one: z=
+" 5. add an word to dictionary: zg
+" ========================================
 " vim-plug in https://github.com/junegunn/vim-plug
 " needing curl
 " All plugins are under 
@@ -83,6 +106,7 @@ Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 "	1. :CocInstall coc-clangd
 "	2. :CocInstall coc-julia
 "	3. :CocInstall coc-python
+"	4. :CocInstall coc-vimtex
 " 2. :CocCommand clangd.install in a cpp file
 " 
 " install ccls for coc
@@ -101,7 +125,7 @@ Plug 'https://github.com/iamcco/markdown-preview.nvim', { 'do': 'cd ~/AppData/Lo
 Plug 'https://github.com/Shirk/vim-gas'					" support for assembly
 " Background Preview
 Plug 'https://github.com/xiyaowong/nvim-transparent'	" background plugin
-"
+
 " Fuzzy Finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' " so we can type :Files to search the tontents of files
@@ -130,25 +154,43 @@ Plug 'norcalli/snippets.nvim'
 " UltiSnips
 Plug 'sirver/ultisnips'
 
+" translator
+Plug 'voldikss/vim-translator'
+
+" ranger, <leader>f to open
+Plug 'francoiscabrol/ranger.vim'
+
+" ranger.vim dependency
+Plug 'rbgrouleff/bclose.vim'
+
 call plug#end()
 
 set encoding=UTF-8
+
+" coc config
+nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
 
 " NERDTree config
 nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 " Open nerdtree if no file is chosen in command line
-function! StartUp()
-    if 0 == argc()
-        NERDTree
-    end
-endfunction
+" function! NerdTreeStartUp()
+" if 0 == argc()
+"         NERDTree
+"     end
+" endfunction
+" autocmd VimEnter * call NerdTreeStartUp()
 
-autocmd VimEnter * call StartUp()
+" Open ranger if no file is chose in command line
+function! RangerStartUp()
+	if 0 == argc()
+		Ranger
+	end
+endfunction
+autocmd VimEnter * call RangerStartUp()
 
 " Tagbar config
 nnoremap <F8> :TagbarToggle<CR>
@@ -163,6 +205,7 @@ nnoremap <F8> :TagbarToggle<CR>
 " :CocInstall coc-python
 " :CocInstall coc-clangd
 " :CocInstall coc-snippets
+" :CocInstall coc-lua
 " :CocCommand snippets.edit... FOR EACH FILE TYPE
 
 " air-line
@@ -220,7 +263,7 @@ let bufferline.exclude_name = ['package.json']
 
 " Enable/disable icons
 " if set to 'buffer_number', will show buffer number in the tabline
-" if set to 'numbers', will show buffer index in the tabline
+" if set to 'numbeer index in the tabline
 " if set to 'both', will show buffer index and icons in the tabline
 " if set to 'buffer_number_with_icon', will show buffer number and icons in the tabline
 let bufferline.icons = v:true
@@ -357,20 +400,17 @@ let g:tex_flavor='latex'
 " viewer method:
 let g:vimtex_view_method = 'zathura'
 
-" Or with a generic interface:
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-
-" VimTeX uses latexmk as the default compiler backend. If you use it, which is
-" strongly recommended, you probably don't need to configure anything. If you
-" want another compiler backend, you can change it as follows. The list of
-" supported backends and further explanation is provided in the documentation,
-" see ":help vimtex-compiler".
-let g:vimtex_compiler_method = 'latexrun'
+" hide code block character
+set conceallevel=1
+let g:tex_conceal='abdmg'
 
 " Most VimTeX mappings rely on localleader and this can be changed with the
 " following line. The default is usually fine and is the symbol "\".
 let maplocalleader = ","
 
-set conceallevel=1
-let g:tex_conceal='abdmg'
+" ==============================================
+" translator
+" ==============================================
+let g:translator_history_enable = v:true
+let g:translator_window_max_height = 10
+let g:translator_default_engines = ['youdao']
