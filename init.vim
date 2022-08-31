@@ -31,6 +31,8 @@ nmap <leader>q :q<CR>
 imap <C-`> ``<Esc>ha
 " code block insert
 map <C-`> i<C-`>
+imap -[ - [ ] 
+imap -【 - [ ] 
 
 " adapt to Chinese
 nmap ： :
