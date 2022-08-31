@@ -1,5 +1,5 @@
 " ===============================================================
-" /							Notes								
+" /							Notes								/	
 " ===============================================================
 " /	1.	/ Path of config file:									/
 " /		/	1.1	Windows: C:\Users\<User Name>\AppData\Local\nvim/
@@ -38,31 +38,22 @@ imap · ``<Esc>ha
 nmap ， <leader>
 
 "  vim config
-:set number
-" :set relativenumber
-:set autoindent
-:set tabstop=4
+:set number				" show line number
+" :set relativenumber	" show relative line number
+:set autoindent			" auto indent
+:set tabstop=4			" set the length of tab as 4 spaces
 :set shiftwidth=4
-:set smarttab
+:set smarttab			" auto tab
 :set softtabstop=4
-:set mouse=a
-" spell languages
-" cjk is used for Asian characters
-set spelllang=en,cjk
-" Show nine spell checking candidates at most
-set spellsuggest=best,9
-" Activate Spelling checker at the beginging
-" set spell!
-" inoremap spell <C-g>u<Esc>[s1z=`]a<C-g>u
-" ========================================
-" Notes for correcting spell errors
-" ========================================
-" 1. correct an error: <C-x>
-" 2. go to previous spell error: [s
-" 3. go to next spell error: ]s
-" 4. show candidates and choose one: z=
-" 5. add an word to dictionary: zg
-" ========================================
+:set mouse=a			" use mouse
+" :set cursorline			" highlight current line
+:hi clear CursorLine
+" :hi CursorLine gui=underline cterm=underline
+
+" source other files
+runtime ./a.vim					" switch between head file and source files
+runtime ./cscope_maps.vim		" search for reference of variables
+
 " vim-plug in https://github.com/junegunn/vim-plug
 " needing curl
 " All plugins are under 
@@ -148,12 +139,6 @@ Plug 'mrjones2014/dash.nvim', { 'do': 'make install' }
 " LaTex
 Plug 'lervag/vimtex'
 
-" snippets
-Plug 'norcalli/snippets.nvim'
-
-" UltiSnips
-Plug 'sirver/ultisnips'
-
 " translator
 Plug 'voldikss/vim-translator'
 
@@ -171,26 +156,24 @@ set encoding=UTF-8
 nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
 
 " NERDTree config
-nnoremap <C-f> :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 " Open nerdtree if no file is chosen in command line
-" function! NerdTreeStartUp()
-" if 0 == argc()
-"         NERDTree
-"     end
-" endfunction
-" autocmd VimEnter * call NerdTreeStartUp()
+function! NerdTreeStartUp()
+if 0 == argc()
+        NERDTree
+    end
+endfunction
+autocmd VimEnter * call NerdTreeStartUp()
 
 " Open ranger if no file is chose in command line
-function! RangerStartUp()
-	if 0 == argc()
-		Ranger
-	end
-endfunction
-autocmd VimEnter * call RangerStartUp()
+" function! RangerStartUp()
+" 	if 0 == argc()
+" 		Ranger
+" 	end
+" endfunction
+" autocmd VimEnter * call RangerStartUp()
 
 " Tagbar config
 nnoremap <F8> :TagbarToggle<CR>
@@ -414,3 +397,9 @@ let maplocalleader = ","
 let g:translator_history_enable = v:true
 let g:translator_window_max_height = 10
 let g:translator_default_engines = ['youdao']
+
+" ==============================================
+" leetcode
+" ==============================================
+let g:leetcode_browser = 'chrome'
+let g:leetcode_china = 1
